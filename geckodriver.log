@@ -205,3 +205,15 @@ JavaScript error: https://accounts.google.com/SignUp?service=mail&continue=https
 1497739522697	Marionette	INFO	Listening on port 39561
 1497739523189	Marionette	WARN	TLS certificate errors will be ignored for this session
 JavaScript error: https://accounts.google.com/SignUp?service=mail&continue=https://mail.google.com/mail/?pc=topnav-about-en, line 5948: TypeError: message is null
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
