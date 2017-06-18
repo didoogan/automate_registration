@@ -302,7 +302,7 @@ if __name__ == '__main__':
     for user in users:
         first_name, last_name, password, telephone, curr_email = list(user)
         try:
-            gmail()
+             gmail()
         except Exception as e:
             print(e)
         try:
