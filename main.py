@@ -1,6 +1,7 @@
 import csv
 import os
 import random
+import string
 
 import time
 from collections import namedtuple
@@ -12,10 +13,12 @@ from selenium.webdriver.support.ui import Select
 # Presets
 first_name = 'JOHN'
 last_name = 'AGMA'
+usr_name = ''
 password = 'secret123'
 # telephone = '+13105874561'
 telephone = '+380995320999'
 curr_email = 'test@ukr.net'
+full_adress = ''
 user_msg = 'You should receive PIN code on your telephone for an activating ' \
            'account. Please, type it on web page and click confirmation button'
 
@@ -43,7 +46,9 @@ def gmail():
     l_name.send_keys(last_name)
     psw.send_keys(password)
     psw_conf.send_keys(password)
-    username.send_keys('{}.{}'.format(first_name.lower(), last_name.lower()))
+    new_username = '{}.{}'.format(first_name.lower(), last_name.lower())
+    username.send_keys(new_username)
+    usr_name = new_username
     psw.click()
     time.sleep(0.3)
     already_exists_txt = driver.find_element_by_id('errormsg_0_GmailAddress').text
@@ -52,6 +57,8 @@ def gmail():
         new_username = driver.find_element_by_xpath('//div[@id="username-suggestions"]//a').text
         username.clear()
         username.send_keys(new_username)
+        usr_name = new_username
+    full_adress = '{}@gmail.com'.format(new_username)
     month_div.click()
     driver.find_element_by_xpath("//div[@class='goog-menuitem']").click()
 
@@ -74,6 +81,7 @@ def gmail():
     next_btn = driver.find_element_by_xpath('//input[@id="next-button"]')
     next_btn.click()
     print(user_msg)
+    user_to_file(user, usr_name, full_adress)
     # driver.close()
 
 
@@ -105,6 +113,7 @@ def yahoo():
     driver.find_element_by_css_selector(
         '#desktop-suggestion-list li:nth-child(1)').click()
     month_div.find_elements_by_tag_name('option')[3].click()
+    usr_name = email.text
     try:
         r = driver.find_element_by_id('reg-error-phone').text
         if r.startswith("We don't"):
@@ -115,7 +124,81 @@ def yahoo():
     create_btn.click()
     time.sleep(1)
     driver.find_element_by_xpath("//button[@type='submit']").click()
+    full_adress = '{}@yahoo.com'.format(usr_name)
     print(user_msg)
+    user_to_file(user, usr_name, full_adress)
+
+
+def hotmail():
+
+    driver = webdriver.Firefox()
+    driver.get("https://signup.live.com/?wa=wsignin1.0&rpsnv=13&ct=1497780750&rver=6.7.6643.0&wp=MBI_SSL_SHARED&wreply=https%3a%2f%2fmail.live.com%2fdefault.aspx&id=64855&cbcxt=mai&contextid=B8D329A03FEA83B1&bk=1497780755&uiflavor=web&uaid=f4f5e57bd31640058a5d98aeda47b15a&mkt=EN-US&lc=1033&lic=1")
+    # Page elements
+    f_name = driver.find_element_by_id("FirstName")
+    l_name = driver.find_element_by_id("LastName")
+    username = driver.find_element_by_id("MemberName")
+    psw = driver.find_element_by_id("Password")
+    psw_confirm = driver.find_element_by_id("RetypePassword")
+    country = driver.find_element_by_id("Country")
+    phone = driver.find_element_by_id("PhoneNumber")
+    email = driver.find_element_by_id("iAltEmail")
+    month = driver.find_element_by_id("BirthMonth")
+    day = driver.find_element_by_id("BirthDay")
+    year = driver.find_element_by_id("BirthYear")
+    gender = driver.find_element_by_id("Gender")
+
+    psw.send_keys(password)
+    psw_confirm.click()
+    psw_confirm.send_keys(password)
+    phone.click()
+    phone.send_keys(telephone)
+    l_name.click()
+    l_name.send_keys(last_name)
+    username.click()
+    usr_name = '{}.{}{}'.format(
+        first_name.lower(), last_name.lower(), get_random('string'))
+    username.send_keys(usr_name)
+    email.click()
+    email.send_keys(curr_email)
+    f_name.click()
+    f_name.send_keys(first_name)
+    psw_confirm.clear()
+    psw_confirm.send_keys(password)
+    email.clear()
+    email.click()
+    email.send_keys(curr_email)
+    month.find_elements_by_tag_name('option')[5].click()
+    day.find_elements_by_tag_name('option')[25].click()
+    year.find_elements_by_tag_name('option')[31].click()
+    gender.find_elements_by_tag_name('option')[1].click()
+    f_name.clear()
+    f_name.click()
+    f_name.send_keys(usr_name)
+
+    for option in country.find_elements_by_tag_name('option'):
+        if option.text == 'United States':
+            option.click()
+            break
+    try:
+        error = driver.find_element_by_id('MemberNameError').text
+        if error.startswith('Someone already has this'):
+            username.clear()
+            username.click()
+            usr_name = '{}{}{}'.format(
+                first_name.lower(), last_name.lower(), get_random('string')
+            )
+            username.send_keys(usr_name)
+    except:
+        pass
+    full_adress = '{}@outlook.com'.format(usr_name)
+    print('You should enter captcha')
+    user_to_file(user, usr_name, full_adress)
+    # try:
+    #     text = driver.find_element_by_xpath("//div[@id='hipSection']//div[contains(string(), 'Before proceeding, we need')]").text
+    #     if text.startswith('Before proceeding,'):
+    #         driver.find_element_by_id('wlspispHipSendCode752022fb06e54d4681a422b1c33646aa').click()
+    # except:
+    #     print('You should enter captcha')
 
 
 def get_random(choice):
@@ -123,10 +206,11 @@ def get_random(choice):
         return random.randrange(1, 30)
     if choice == 'year':
         return random.randrange(1970, 2000)
+    if choice == 'string':
+        return ''.join(random.choice(string.ascii_lowercase) for _ in range(3))
 
 
 def get_data(psw, email):
-
     res = []
     path = os.path.join(os.getcwd(), 'names.txt')
     with open(path) as f:
@@ -137,20 +221,21 @@ def get_data(psw, email):
     return res
 
 
-def user_to_file(user):
+def user_to_file(user, usr_name, full_adress):
     filename = '{}/users.csv'.format(os.getcwd())
     with open(filename, 'a', newline='') as fp:
         a = csv.writer(fp)
-        a.writerow(list(user))
+        a.writerow(list(user) + [usr_name, full_adress])
 
 if __name__ == '__main__':
     users = get_data('poikld54', 'test@ukr.net')
     for user in users:
         first_name, last_name, password, telephone, curr_email = list(user)
-        try:
-            yahoo()
-        except Exception as e:
-            print(e)
+        # try:
+        #     yahoo()
+        # except Exception as e:
+        #     print(e)
+        hotmail()
         telephone = '+1{}'.format(telephone)
         #gmail()
         #user_to_file(user)
