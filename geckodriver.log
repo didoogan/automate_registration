@@ -217,3 +217,246 @@ A coding exception was thrown and uncaught in a Task.
 Full message: TypeError: NetworkError when attempting to fetch resource.
 Full stack: 
 *************************
+1497741040613	Marionette	INFO	Ceased listening
+1497741043235	Marionette	INFO	Ceased listening
+1497773427431	geckodriver	INFO	Listening on 127.0.0.1:52915
+1497773427689	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497773433985	Marionette	INFO	Listening on port 39503
+1497773434680	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+1497773438189	geckodriver	INFO	Listening on 127.0.0.1:57239
+1497773439465	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497773445388	Marionette	INFO	Listening on port 41541
+1497773445890	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+1497773472703	Marionette	INFO	Ceased listening
+1497773517539	Marionette	INFO	Ceased listening
+1497773519337	geckodriver	INFO	Listening on 127.0.0.1:57318
+1497773519584	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497773525753	Marionette	INFO	Listening on port 36266
+1497773526185	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+1497773870933	geckodriver	INFO	Listening on 127.0.0.1:52613
+1497773871184	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497773877184	Marionette	INFO	Listening on port 36478
+1497773877863	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+1497774382643	geckodriver	INFO	Listening on 127.0.0.1:54356
+1497774382893	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497774389070	Marionette	INFO	Listening on port 37685
+1497774389761	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+1497774508671	geckodriver	INFO	Listening on 127.0.0.1:46887
+1497774509935	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497774516459	geckodriver	INFO	Listening on 127.0.0.1:58900
+1497774516705	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497774523102	Marionette	INFO	Listening on port 42545
+1497774523696	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+1497774584735	geckodriver	INFO	Listening on 127.0.0.1:45201
+1497774586098	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497774592819	Marionette	INFO	Listening on port 34665
+1497774593324	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1497775199737	geckodriver	INFO	Listening on 127.0.0.1:43464
+1497775200045	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497775206941	Marionette	INFO	Listening on port 44526
+1497775207138	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+1497775264480	Marionette	INFO	Ceased listening
+1497775300697	geckodriver	INFO	Listening on 127.0.0.1:54379
+1497775300955	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497775306919	Marionette	INFO	Listening on port 38557
+1497775307431	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+1497775551167	geckodriver	INFO	Listening on 127.0.0.1:36711
+1497775551440	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497775557483	Marionette	INFO	Listening on port 38346
+1497775558042	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+TabSources.prototype._fetchSourceMap threw an exception: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+Stack: SourceMapConsumer@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/sourcemap/source-map.js:1281:20
+_fetchSourceMap/fetching<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/utils/TabSources.js:458:19
+process@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:922:23
+walkerLoop@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:806:7
+scheduleWalkerLoop/<@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:742:11
+Line: 1281, column: 20
+console.error: 
+  TabSources.prototype._fetchSourceMap threw an exception: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+Stack: SourceMapConsumer@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/sourcemap/source-map.js:1281:20
+_fetchSourceMap/fetching<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/utils/TabSources.js:458:19
+process@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:922:23
+walkerLoop@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:806:7
+scheduleWalkerLoop/<@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:742:11
+Line: 1281, column: 20
+TabSources.prototype._fetchSourceMap threw an exception: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+Stack: SourceMapConsumer@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/sourcemap/source-map.js:1281:20
+_fetchSourceMap/fetching<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/utils/TabSources.js:458:19
+process@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:922:23
+walkerLoop@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:806:7
+scheduleWalkerLoop/<@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:742:11
+Line: 1281, column: 20
+console.error: 
+  TabSources.prototype._fetchSourceMap threw an exception: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+Stack: SourceMapConsumer@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/sourcemap/source-map.js:1281:20
+_fetchSourceMap/fetching<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/utils/TabSources.js:458:19
+process@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:922:23
+walkerLoop@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:806:7
+scheduleWalkerLoop/<@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:742:11
+Line: 1281, column: 20
+TabSources.prototype._fetchSourceMap threw an exception: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+Stack: SourceMapConsumer@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/sourcemap/source-map.js:1281:20
+_fetchSourceMap/fetching<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/utils/TabSources.js:458:19
+process@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:922:23
+walkerLoop@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:806:7
+scheduleWalkerLoop/<@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:742:11
+Line: 1281, column: 20
+console.error: 
+  TabSources.prototype._fetchSourceMap threw an exception: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+Stack: SourceMapConsumer@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/sourcemap/source-map.js:1281:20
+_fetchSourceMap/fetching<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/utils/TabSources.js:458:19
+process@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:922:23
+walkerLoop@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:806:7
+scheduleWalkerLoop/<@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:742:11
+Line: 1281, column: 20
+1497775750508	Marionette	INFO	Ceased listening
+1497775764350	geckodriver	INFO	Listening on 127.0.0.1:42375
+1497775764654	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497775770693	Marionette	INFO	Listening on port 37161
+1497775771160	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+1497775983444	geckodriver	INFO	Listening on 127.0.0.1:53924
+1497775983729	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497775990165	Marionette	INFO	Listening on port 45254
+1497775990395	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+1497776005223	geckodriver	INFO	Listening on 127.0.0.1:49092
+1497776006551	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497776012652	Marionette	INFO	Listening on port 35081
+1497776013196	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1497776571169	Marionette	INFO	Ceased listening
+1497776573822	Marionette	INFO	Ceased listening
+1497776645596	geckodriver	INFO	Listening on 127.0.0.1:36027
+1497776645848	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497776651907	Marionette	INFO	Listening on port 34534
+1497776652567	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+1497776814008	geckodriver	INFO	Listening on 127.0.0.1:49097
+1497776814317	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497776820671	Marionette	INFO	Listening on port 38724
+1497776821007	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+1497776855123	geckodriver	INFO	Listening on 127.0.0.1:35369
+1497776855435	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497776861203	Marionette	INFO	Listening on port 46800
+1497776861744	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+1497777108597	geckodriver	INFO	Listening on 127.0.0.1:39976
+1497777108884	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497777114875	Marionette	INFO	Listening on port 41418
+1497777115425	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+1497777254893	geckodriver	INFO	Listening on 127.0.0.1:44315
+1497777255147	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497777261192	Marionette	INFO	Listening on port 46563
+1497777261810	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+1497777300820	geckodriver	INFO	Listening on 127.0.0.1:54623
+1497777301072	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497777307026	Marionette	INFO	Listening on port 39918
+1497777307602	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+1497777327996	geckodriver	INFO	Listening on 127.0.0.1:47785
+1497777329266	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497777336127	Marionette	INFO	Listening on port 35503
+1497777336228	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+JavaScript error: resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/highlighters/box-model.js, line 403: TypeError: quads is undefined
+1497777930351	geckodriver	INFO	Listening on 127.0.0.1:43378
+1497777930606	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497777936699	Marionette	INFO	Listening on port 39508
+1497777937267	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+1497778018780	geckodriver	INFO	Listening on 127.0.0.1:46149
+1497778019100	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497778024834	Marionette	INFO	Listening on port 36164
+1497778025619	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+TabSources.prototype._fetchSourceMap threw an exception: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+Stack: SourceMapConsumer@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/sourcemap/source-map.js:1281:20
+_fetchSourceMap/fetching<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/utils/TabSources.js:458:19
+process@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:922:23
+walkerLoop@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:806:7
+scheduleWalkerLoop/<@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:742:11
+Line: 1281, column: 20
+console.error: 
+  TabSources.prototype._fetchSourceMap threw an exception: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+Stack: SourceMapConsumer@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/sourcemap/source-map.js:1281:20
+_fetchSourceMap/fetching<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/utils/TabSources.js:458:19
+process@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:922:23
+walkerLoop@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:806:7
+scheduleWalkerLoop/<@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:742:11
+Line: 1281, column: 20
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+JavaScript error: resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/highlighters/box-model.js, line 403: TypeError: quads is undefined
+TabSources.prototype._fetchSourceMap threw an exception: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+Stack: SourceMapConsumer@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/sourcemap/source-map.js:1281:20
+_fetchSourceMap/fetching<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/utils/TabSources.js:458:19
+process@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:922:23
+walkerLoop@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:806:7
+scheduleWalkerLoop/<@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:742:11
+Line: 1281, column: 20
+console.error: 
+  TabSources.prototype._fetchSourceMap threw an exception: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+Stack: SourceMapConsumer@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/sourcemap/source-map.js:1281:20
+_fetchSourceMap/fetching<@resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/utils/TabSources.js:458:19
+process@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:922:23
+walkerLoop@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:806:7
+scheduleWalkerLoop/<@resource://gre/modules/Promise.jsm -> resource://gre/modules/Promise-backend.js:742:11
+Line: 1281, column: 20
+1497778710995	geckodriver	INFO	Listening on 127.0.0.1:43398
+1497778711293	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497778717478	Marionette	INFO	Listening on port 41186
+1497778718106	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+1497778796596	geckodriver	INFO	Listening on 127.0.0.1:48055
+1497778797875	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497778804082	Marionette	INFO	Listening on port 38998
+1497778804688	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.

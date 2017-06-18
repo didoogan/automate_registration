@@ -16,6 +16,8 @@ password = 'secret123'
 # telephone = '+13105874561'
 telephone = '+380995320999'
 curr_email = 'test@ukr.net'
+user_msg = 'You should receive PIN code on your telephone for an activating ' \
+           'account. Please, type it on web page and click confirmation button'
 
 User = namedtuple('User', 'f_name l_name psw tel email')
 
@@ -71,8 +73,7 @@ def gmail():
     time.sleep(2)
     next_btn = driver.find_element_by_xpath('//input[@id="next-button"]')
     next_btn.click()
-    print('You should receive PIN code on your telephone for an activating '
-          'account. Please, type it on web page and click continue')
+    print(user_msg)
     # driver.close()
 
 
@@ -88,13 +89,33 @@ def yahoo():
     month_div = driver.find_element_by_id("usernamereg-month")
     birth_day = driver.find_element_by_id("usernamereg-day")
     birth_year = driver.find_element_by_id('usernamereg-year')
-    f_name.send_keys(first_name)
-    l_name.send_keys(last_name)
-    email.send_keys('{}.{}{}'.format(first_name.lower(), last_name.lower(), 'dFg'))
-    psw.send_keys(password)
-    phone.send_keys(telephone)
+    create_btn = driver.find_element_by_id('reg-submit-button')
+
+    birth_day.click()
     birth_day.send_keys(get_random('day'))
     birth_year.send_keys(get_random('year'))
+    birth_year.click()
+    f_name.send_keys(first_name)
+    l_name.send_keys(last_name)
+    # email.send_keys('{}.{}{}'.format(first_name.lower(), last_name.lower(), 'dFg'))
+    email.send_keys('{}.{}'.format(first_name.lower(), last_name.lower()))
+    psw.send_keys(password)
+    phone.send_keys(telephone)
+    time.sleep(0.6)
+    driver.find_element_by_css_selector(
+        '#desktop-suggestion-list li:nth-child(1)').click()
+    month_div.find_elements_by_tag_name('option')[3].click()
+    try:
+        r = driver.find_element_by_id('reg-error-phone').text
+        if r.startswith("We don't"):
+            raise AttributeError('You should provide real phone number '
+                                 'for user {} {}'.format(first_name, last_name))
+    except:
+        pass
+    create_btn.click()
+    time.sleep(1)
+    driver.find_element_by_xpath("//button[@type='submit']").click()
+    print(user_msg)
 
 
 def get_random(choice):
@@ -126,7 +147,10 @@ if __name__ == '__main__':
     users = get_data('poikld54', 'test@ukr.net')
     for user in users:
         first_name, last_name, password, telephone, curr_email = list(user)
-        # yahoo()
+        try:
+            yahoo()
+        except Exception as e:
+            print(e)
         telephone = '+1{}'.format(telephone)
-        gmail()
+        #gmail()
         #user_to_file(user)
