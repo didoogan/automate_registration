@@ -98,3 +98,4 @@ ENV/
 geckodriver.log
 
 
+/geckodriver.log
