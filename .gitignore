@@ -97,4 +97,4 @@ ENV/
 .idea/
 geckodriver.log
 
-
+/env_python3/

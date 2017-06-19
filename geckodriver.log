@@ -1930,3 +1930,8 @@ ATTENTION: default value of option force_s3tc_enable overridden by environment.
 1497824811885	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
 1497824817788	Marionette	INFO	Listening on port 45028
 1497824818400	Marionette	WARN	TLS certificate errors will be ignored for this session
+1497890659098	geckodriver	INFO	Listening on 127.0.0.1:37576
+1497890659336	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497890664916	Marionette	INFO	Listening on port 33118
+1497890664985	Marionette	WARN	TLS certificate errors will be ignored for this session
+1497890723345	Marionette	INFO	Ceased listening
