@@ -97,5 +97,3 @@ ENV/
 .idea/
 geckodriver.log
 
-
-/geckodriver.log
