@@ -11,16 +11,16 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 
 # Presets
-first_name = 'JOHN'
-last_name = 'AGMA'
-usr_name = ''
-password = 'secret123'
-# telephone = '+13105874561'
-telephone = '+380995320999'
-curr_email = 'test2@ukr.net'
-full_adress = ''
-user_msg = 'You should receive PIN code on your telephone for an activating ' \
-           'account. Please, type it on web page and click confirmation button'
+# first_name = 'JOHN'
+# last_name = 'AGMA'
+# usr_name = ''
+# password = 'secret123'
+# # telephone = '+13105874561'
+# telephone = '+380995320999'
+# curr_email = 'test2@ukr.net'
+# full_adress = ''
+# user_msg = 'You should receive PIN code on your telephone for an activating ' \
+#            'account. Please, type it on web page and click confirmation button'
 
 User = namedtuple('User', 'f_name l_name psw tel email')
 
@@ -249,11 +249,23 @@ def user_to_file(user, usr_name, full_adress):
 
 
 class Register(object):
-    driver = webdriver.Firefox()
+    User = namedtuple('User', 'f_name l_name psw tel mail')
+    users = []
+    first_name = ''
+    last_name = ''
+    password = ''
+    telephone = ''
+    curr_email = ''
+    DAY = ('25',)
+    MONTH = ('5', 'May', 'may',)
+    YEAR = ('1987', '31',)
+    COUNTRY = ('United States', 'US', 'us',)
+    GENDER = ('Male', 'Female',)
 
     def __init__(self, name, url, f_name, l_name, username, psw, psw_confirm, country,
                  phone, email, month, day, year, gender=None, zip=None):
         self.name = name
+        self.driver = webdriver.Firefox()
         self.driver.get(url)
         self.f_name_el = self.driver.find_element_by_id(f_name)
         self.l_name_el = self.driver.find_element_by_id(l_name)
@@ -271,94 +283,76 @@ class Register(object):
         if zip:
             self.zip_el = self.driver.find_element_by_id(zip)
 
-    @staticmethod
-    def get_data(psw='dDD&sh21', email='test@ukr.net'):
+    @classmethod
+    def get_users_from_file(cls, psw='dDD&sh21', email='test@ukr.net'):
         path = os.path.join(os.getcwd(), 'names.txt')
-        res = []
         with open(path) as f:
             for line in f:
                 full_name, tel = line.split(',')
                 f_name, l_name = full_name.split(' ')
-                res.append(User(f_name, l_name, psw, tel, email))
-        return res
+                u = User(f_name, l_name, psw, tel, email)
+                cls.users.append(u)
 
+    @classmethod
+    def init_data(cls, user):
+        cls.first_name, cls.last_name, cls.password, \
+        cls.telephone, cls.curr_email = list(user)
+
+    @classmethod
+    def get_full_name(cls):
+        return '{}{}'.format(cls.first_name.lower(), cls.last_name.lower())
+
+    def fill_input(self, el, value):
+        el.clear()
+        el.click()
+        el.send_keys(value)
+
+    def select_el(self, el, values):
+        for option in el.find_elements_by_tag_name('option'):
+            if option.text in values:
+                option.click()
+                break
 
     def run(self):
-        users = Register.get_data()
-        for user in users:
-            first_name, last_name, password, telephone, curr_email = list(user)
-            self.f_name_el.click()
-            self.f_name_el.send_keys(first_name)
-            self.l_name_el.click()
-            self.l_name_el.send_keys(last_name)
-            self.username_el.click()
-            if self.name == 'hotmail':
-                self.username_el.send_keys('{}{}{}'.format(
-                    first_name.lower(), last_name.lower(), get_random('string')
-                ))
-            else:
-                self.username_el.send_keys('{}{}'.format(
-                    first_name.lower(), last_name.lower()
-                ))
-            self.phone_el.click()
-            self.phone_el.send_keys(telephone)
-            self.psw_confirm_el.click()
-            self.psw_confirm_el.send_keys(password)
-            self.gender_el.find_elements_by_tag_name('option')[1].click()
-            self.month_el.find_elements_by_tag_name('option')[5].click()
-            self.psw_el.click()
-            self.psw_el.send_keys(password)
+        self.fill_input(self.f_name_el, Register.first_name)
+        self.fill_input(self.l_name_el, Register.last_name)
+        self.fill_input(self.username_el, Register.get_full_name())
+        self.fill_input(self.phone_el, Register.telephone)
+        self.fill_input(self.psw_el, Register.password)
+        self.fill_input(self.psw_confirm_el, Register.password)
+        self.fill_input(self.email_el, Register.curr_email)
 
-            if self.name == 'hotmail':
-                self.day_el.click()
-                self.day_el.find_elements_by_tag_name('option')[25].click()
-                self.year_el.find_elements_by_tag_name('option')[31].click()
-                self.phone_el.clear()
-                self.phone_el.click()
-                self.phone_el.send_keys(telephone)
-                for option in self.country_el.find_elements_by_tag_name('option'):
-                    if option.text == 'United States':
-                        option.click()
-                        break
-
-
-
-                        # l_name.click()
-    # l_name.send_keys(last_name)
-    # username.click()
-    # usr_name = '{}.{}{}'.format(
-    #     first_name.lower(), last_name.lower(), get_random('string'))
-    # username.send_keys(usr_name)
-    # email.click()
-    # email.send_keys(curr_email)
-    # f_name.click()
-    # f_name.send_keys(first_name)
-    # psw_confirm.clear()
-    # psw_confirm.send_keys(password)
-    # month.find_elements_by_tag_name('option')[5].click()
-    # day.find_elements_by_tag_name('option')[25].click()
-    # year.find_elements_by_tag_name('option')[31].click()
-    # gender.find_elements_by_tag_name('option')[1].click()
-
-
+    def run_hotmail(self):
+        self.select_el(self.country_el, Register.COUNTRY)
+        self.fill_input(self.phone_el, Register.telephone)
+        self.fill_input(self.psw_confirm_el, Register.password)
+        self.fill_input(self.username_el, '{}{}'.format(
+            Register.get_full_name(), get_random('string'))
+        )
+        self.select_el(self.day_el, Register.DAY)
+        self.select_el(self.month_el, Register.MONTH)
+        self.select_el(self.year_el, Register.YEAR)
+        self.select_el(self.gender_el, Register.GENDER)
+        pass
 
 if __name__ == '__main__':
-    # users = get_data('poikld54', 'test@ukr.net')
-    # for user in users:
-    #     first_name, last_name, password, telephone, curr_email = list(user)
-    #     try:
-    #          gmail()
-    #     except Exception as e:
-    #         print(e)
-    #     try:
-    #         yahoo()
-    #     except Exception as e:
-    #         print(e)
-    #     try:
-    #         hotmail()
-    #     except Exception as e:
-    #         print(e)
-        # aol()
+    hotmail = Register(name='hotmail', url='https://signup.live.com/?wa=wsignin1.0&rpsnv=13&ct=1497780750&rver=6.7.6643.0&wp=MBI_SSL_SHARED&wreply=https%3a%2f%2fmail.live.com%2fdefault.aspx&id=64855&cbcxt=mai&contextid=B8D329A03FEA83B1&bk=1497780755&uiflavor=web&uaid=f4f5e57bd31640058a5d98aeda47b15a&mkt=EN-US&lc=1033&lic=1',
+        f_name='FirstName', l_name='LastName', username='MemberName',
+        psw='Password', psw_confirm='RetypePassword', country='Country',
+        phone='PhoneNumber', email='iAltEmail', month='BirthMonth',
+        day='BirthDay', year='BirthYear', gender='Gender')
+
+    Register.get_users_from_file()
+    for user in Register.users:
+        Register.init_data(user)
+        hotmail.run()
+        hotmail.run_hotmail()
+        pass
+
+
+
+
+
     # aol = Register(
     #     url='https://i.aol.com/reg/signup?ncid=txtlnkuswebr00000054&promocode=825329',
     #     f_name='firstName', l_name='lastName', username='desiredSN',
@@ -370,11 +364,5 @@ if __name__ == '__main__':
     # users = Register.get_data()
     # for user in users:
     #     pass
-    hotmail = Register(name='hotmail', url='https://signup.live.com/?wa=wsignin1.0&rpsnv=13&ct=1497780750&rver=6.7.6643.0&wp=MBI_SSL_SHARED&wreply=https%3a%2f%2fmail.live.com%2fdefault.aspx&id=64855&cbcxt=mai&contextid=B8D329A03FEA83B1&bk=1497780755&uiflavor=web&uaid=f4f5e57bd31640058a5d98aeda47b15a&mkt=EN-US&lc=1033&lic=1',
-        f_name='FirstName', l_name='LastName', username='MemberName',
-        psw='Password', psw_confirm='RetypePassword', country='Country',
-        phone='PhoneNumber', email='iAltEmail', month='BirthMonth',
-        day='BirthDay', year='BirthYear', gender='Gender')
 
-    hotmail.run()
 
