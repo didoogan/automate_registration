@@ -262,26 +262,25 @@ class Register(object):
     COUNTRY = ('United States', 'US', 'us',)
     GENDER = ('Male', 'Female',)
 
-    def __init__(self, name, url, f_name, l_name, username, psw, psw_confirm, country,
-                 phone, email, month, day, year, gender=None, zip=None):
-        self.name = name
+    def __init__(self, url, f_name, l_name, username, psw,
+                 phone, month, day, year, psw_confirm=None, email=None,
+                 gender=None, _zip=None, button=None, country=None):
         self.driver = webdriver.Firefox()
         self.driver.get(url)
         self.f_name_el = self.driver.find_element_by_id(f_name)
         self.l_name_el = self.driver.find_element_by_id(l_name)
         self.username_el = self.driver.find_element_by_id(username)
         self.psw_el = self.driver.find_element_by_id(psw)
-        self.psw_confirm_el = self.driver.find_element_by_id(psw_confirm)
-        self.country_el = self.driver.find_element_by_id(country)
         self.phone_el = self.driver.find_element_by_id(phone)
-        self.email_el = self.driver.find_element_by_id(email)
         self.month_el = self.driver.find_element_by_id(month)
         self.day_el = self.driver.find_element_by_id(day)
         self.year_el = self.driver.find_element_by_id(year)
-        if gender:
-            self.gender_el = self.driver.find_element_by_id(gender)
-        if zip:
-            self.zip_el = self.driver.find_element_by_id(zip)
+        self.psw_confirm_el = self.driver.find_element_by_id(psw_confirm) if psw_confirm else None
+        self.gender_el = self.driver.find_element_by_id(gender) if gender else None
+        self.zip_el = self.driver.find_element_by_id(_zip) if _zip else None
+        self.button_el = self.driver.find_element_by_id(button) if button else None
+        self.email_el = self.driver.find_element_by_id(email) if email else None
+        self.country_el = self.driver.find_element_by_id(country) if country else None
 
     @classmethod
     def get_users_from_file(cls, psw='dDD&sh21', email='test@ukr.net'):
@@ -303,6 +302,8 @@ class Register(object):
         return '{}{}'.format(cls.first_name.lower(), cls.last_name.lower())
 
     def fill_input(self, el, value):
+        if not el:
+            return
         el.clear()
         el.click()
         el.send_keys(value)
@@ -319,7 +320,8 @@ class Register(object):
         self.fill_input(self.username_el, Register.get_full_name())
         self.fill_input(self.phone_el, Register.telephone)
         self.fill_input(self.psw_el, Register.password)
-        self.fill_input(self.psw_confirm_el, Register.password)
+        if self.psw_confirm_el:
+            self.fill_input(self.psw_confirm_el, Register.password)
         self.fill_input(self.email_el, Register.curr_email)
 
     def run_hotmail(self):
@@ -336,33 +338,42 @@ class Register(object):
         pass
 
 if __name__ == '__main__':
-    hotmail = Register(name='hotmail', url='https://signup.live.com/?wa=wsignin1.0&rpsnv=13&ct=1497780750&rver=6.7.6643.0&wp=MBI_SSL_SHARED&wreply=https%3a%2f%2fmail.live.com%2fdefault.aspx&id=64855&cbcxt=mai&contextid=B8D329A03FEA83B1&bk=1497780755&uiflavor=web&uaid=f4f5e57bd31640058a5d98aeda47b15a&mkt=EN-US&lc=1033&lic=1',
-        f_name='FirstName', l_name='LastName', username='MemberName',
-        psw='Password', psw_confirm='RetypePassword', country='Country',
-        phone='PhoneNumber', email='iAltEmail', month='BirthMonth',
-        day='BirthDay', year='BirthYear', gender='Gender')
 
     Register.get_users_from_file()
     for user in Register.users:
+        hotmail = Register(url='https://signup.live.com/?wa=wsignin1.0&rpsnv=13&ct=1497780750&rver=6.7.6643.0&wp=MBI_SSL_SHARED&wreply=https%3a%2f%2fmail.live.com%2fdefault.aspx&id=64855&cbcxt=mai&contextid=B8D329A03FEA83B1&bk=1497780755&uiflavor=web&uaid=f4f5e57bd31640058a5d98aeda47b15a&mkt=EN-US&lc=1033&lic=1',
+                           f_name='FirstName', l_name='LastName', username='MemberName',
+                           psw='Password', psw_confirm='RetypePassword', country='Country',
+                           phone='PhoneNumber', email='iAltEmail', month='BirthMonth',
+                           day='BirthDay', year='BirthYear', gender='Gender')
+        yahoo = Register(
+            url="https://login.yahoo.com/account/create?specId=yidReg&lang=en-US&src=ym&done=https%3A%2F%2Fmail.yahoo.com&display=login&intl=us",
+            f_name="usernamereg-firstName", l_name="usernamereg-lastName",
+            username="usernamereg-yid", psw="usernamereg-password",
+            phone="usernamereg-phone", day="usernamereg-day",
+            year="usernamereg-year", button="reg-submit-button",
+            month="usernamereg-month",
+        )
         Register.init_data(user)
         hotmail.run()
         hotmail.run_hotmail()
+        yahoo.run()
         pass
 
 
 
 
 
-    # aol = Register(
-    #     url='https://i.aol.com/reg/signup?ncid=txtlnkuswebr00000054&promocode=825329',
-    #     f_name='firstName', l_name='lastName', username='desiredSN',
-    #     psw='password', psw_confirm='verify-password-cont', country='country-code_msdd',
-    #     phone='mobileNum', email='altEMail',
-    #     month='dobMonth', day='dobDay', year='dobYear', gender='gender',
-    #     zip='zipCode'
-    # )
-    # users = Register.get_data()
-    # for user in users:
-    #     pass
+        # aol = Register(
+        #     url='https://i.aol.com/reg/signup?ncid=txtlnkuswebr00000054&promocode=825329',
+        #     f_name='firstName', l_name='lastName', username='desiredSN',
+        #     psw='password', psw_confirm='verify-password-cont', country='country-code_msdd',
+        #     phone='mobileNum', email='altEMail',
+        #     month='dobMonth', day='dobDay', year='dobYear', gender='gender',
+        #     zip='zipCode'
+        # )
+        # users = Register.get_data()
+        # for user in users:
+        #     pass
 
 
