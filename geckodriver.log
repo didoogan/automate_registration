@@ -1853,3 +1853,100 @@ A coding exception was thrown and uncaught in a Task.
 Full message: TypeError: NetworkError when attempting to fetch resource.
 Full stack: 
 *************************
+1497978634214	geckodriver	INFO	Listening on 127.0.0.1:53954
+1497978635756	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497978656559	Marionette	INFO	Listening on port 34867
+1497978656944	Marionette	WARN	TLS certificate errors will be ignored for this session
+1497978657196	geckodriver	INFO	Listening on 127.0.0.1:35149
+1497978658431	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497978664387	Marionette	INFO	Listening on port 38390
+1497978665018	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://accounts.google.com/SignUp?service=mail&continue=https://mail.google.com/mail/?pc=topnav-about-en, line 5948: TypeError: message is null
+1497978691030	geckodriver	INFO	Listening on 127.0.0.1:46852
+1497978692339	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497978700040	Marionette	INFO	Listening on port 43267
+1497978700518	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+1497978711989	geckodriver	INFO	Listening on 127.0.0.1:35294
+1497978713257	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497978719798	Marionette	INFO	Listening on port 46706
+1497978720303	Marionette	WARN	TLS certificate errors will be ignored for this session
+1497978737553	geckodriver	INFO	Listening on 127.0.0.1:57342
+1497978738840	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497978745469	Marionette	INFO	Listening on port 45263
+1497978746774	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://accounts.google.com/SignUp?service=mail&continue=https://mail.google.com/mail/?pc=topnav-about-en, line 5948: TypeError: message is null
+1497978769964	geckodriver	INFO	Listening on 127.0.0.1:36382
+1497978771210	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497978778658	Marionette	INFO	Listening on port 44462
+1497978779220	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+1497978791734	geckodriver	INFO	Listening on 127.0.0.1:52344
+1497978793039	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497978800051	Marionette	INFO	Listening on port 32814
+1497978800534	Marionette	WARN	TLS certificate errors will be ignored for this session
+1497978812241	Marionette	INFO	Ceased listening
+1497978817848	Marionette	INFO	Ceased listening
+1497978821254	Marionette	INFO	Ceased listening
+1497978825288	Marionette	INFO	Ceased listening
+1497978829431	Marionette	INFO	Ceased listening
+1497978844193	Marionette	INFO	Ceased listening
+1497978849945	Marionette	INFO	Ceased listening
+1497980984172	geckodriver	INFO	Listening on 127.0.0.1:42236
+1497980984589	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497980992601	Marionette	INFO	Listening on port 45837
+1497980993656	Marionette	WARN	TLS certificate errors will be ignored for this session
+1497980993821	geckodriver	INFO	Listening on 127.0.0.1:43926
+1497980995460	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497981004293	Marionette	INFO	Listening on port 38309
+1497981004575	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://accounts.google.com/SignUp?service=mail&continue=https://mail.google.com/mail/?pc=topnav-about-en, line 5948: TypeError: message is null
+1497981030168	geckodriver	INFO	Listening on 127.0.0.1:58750
+1497981031571	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497981039494	Marionette	INFO	Listening on port 44909
+1497981040115	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+1497981053011	geckodriver	INFO	Listening on 127.0.0.1:40313
+1497981054380	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497981063087	Marionette	INFO	Listening on port 45827
+1497981063723	Marionette	WARN	TLS certificate errors will be ignored for this session
+1497981098907	geckodriver	INFO	Listening on 127.0.0.1:50415
+1497981100343	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497981108571	Marionette	INFO	Listening on port 44277
+1497981109251	Marionette	WARN	TLS certificate errors will be ignored for this session
+1497981140656	geckodriver	INFO	Listening on 127.0.0.1:57850
+1497981142123	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497981150392	Marionette	INFO	Listening on port 37483
+1497981150545	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+1497981162796	geckodriver	INFO	Listening on 127.0.0.1:34508
+1497981164129	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1497981172191	Marionette	INFO	Listening on port 45909
+1497981172747	Marionette	WARN	TLS certificate errors will be ignored for this session
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1497981503819	Marionette	INFO	Ceased listening
+1497981506735	Marionette	INFO	Ceased listening
+1497981509714	Marionette	INFO	Ceased listening
+1497981512800	Marionette	INFO	Ceased listening
+1497981515059	Marionette	INFO	Ceased listening
+1497981517921	Marionette	INFO	Ceased listening
+1497981520707	Marionette	INFO	Ceased listening
+/usr/bin/tor-browser-en.sh: Invalid option '--'
+Usage: tor-browser-en.sh [option]
+
+Options:
+  -h				Show this help message and exit
+  -u				Force update of the copy in your home directory
+  -r <directory>	The Tor-Browser directory to use
+/usr/bin/tor-browser-en.sh: Invalid option '--'
+Usage: tor-browser-en.sh [option]
+
+Options:
+  -h				Show this help message and exit
+  -u				Force update of the copy in your home directory
+  -r <directory>	The Tor-Browser directory to use
