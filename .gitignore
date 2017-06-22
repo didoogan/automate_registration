@@ -98,3 +98,5 @@ ENV/
 geckodriver.log
 
 
+/geckodriver.log
+/users.csv
