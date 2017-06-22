@@ -54,7 +54,7 @@ def get_random(choice):
     if choice == 'year':
         return random.randrange(1970, 2000)
     if choice == 'string':
-        return ''.join(random.choice(string.ascii_lowercase) for _ in range(3))
+        return ''.join(random.choice(string.ascii_lowercase) for _ in range(5))
 
 
 def get_data(psw, email):
@@ -105,6 +105,23 @@ class Register(object):
     def __init__(self, url, f_name, l_name, username, psw,
                  phone, month, day, year, psw_confirm=None, email=None,
                  gender=None, _zip=None, button=None, country=None):
+        self.url = url
+        self.f_name_id = f_name
+        self.l_name_id = l_name
+        self.username_id = username
+        self.psw_id = psw
+        self.phone_id = phone
+        self.month_id = month
+        self.day_id = day
+        self.year_id = year
+        self.psw_confirm_id = psw_confirm
+        self.gender_id = gender
+        self.zip_id = _zip
+        self.button_id = button
+        self.email_id = email
+        self.country_id = country
+
+    def run_selenium(self):
         binary = FirefoxBinary(TOR_BINARY_PATH)
 
         prof = FirefoxProfile()
@@ -117,40 +134,26 @@ class Register(object):
         # self.driver = webdriver.Firefox(firefox_profile=prof,
         #                                 firefox_binary=binary)
         self.driver = webdriver.Firefox()
-        self.driver.get(url)
-        self.f_name_id = f_name
-        self.f_name_el = self.driver.find_element_by_id(f_name)
-        self.l_name_id = l_name
-        self.l_name_el = self.driver.find_element_by_id(l_name)
-        self.username_id = username
-        self.username_el = self.driver.find_element_by_id(username)
-        self.psw_id = psw
-        self.psw_el = self.driver.find_element_by_id(psw)
-        self.phone_id = phone
-        self.phone_el = self.driver.find_element_by_id(phone)
-        self.month_id = month
-        self.month_el = self.driver.find_element_by_id(month)
-        self.day_id = day
-        self.day_el = self.driver.find_element_by_id(day)
-        self.year_id = year
-        self.year_el = self.driver.find_element_by_id(year)
-        self.psw_confirm_id = psw_confirm
+        self.driver.get(self.url)
+        self.f_name_el = self.driver.find_element_by_id(self.f_name_id)
+        self.l_name_el = self.driver.find_element_by_id(self.l_name_id)
+        self.username_el = self.driver.find_element_by_id(self.username_id)
+        self.psw_el = self.driver.find_element_by_id(self.psw_id)
+        self.phone_el = self.driver.find_element_by_id(self.phone_id)
+        self.month_el = self.driver.find_element_by_id(self.month_id)
+        self.day_el = self.driver.find_element_by_id(self.day_id)
+        self.year_el = self.driver.find_element_by_id(self.year_id)
         self.psw_confirm_el = self.driver.find_element_by_id(
-            psw_confirm) if psw_confirm else None
-        self.gender_id = gender
+            self.psw_confirm_id) if self.psw_confirm_id else None
         self.gender_el = self.driver.find_element_by_id(
-            gender) if gender else None
-        self.zip_id = _zip
-        self.zip_el = self.driver.find_element_by_id(_zip) if _zip else None
-        self.button_id = button
+            self.gender_id) if self.gender_id else None
+        self.zip_el = self.driver.find_element_by_id(self.zip_id) if self.zip_id else None
         self.button_el = self.driver.find_element_by_id(
-            button) if button else None
-        self.email_id = email
+            self.button_id) if self.button_id else None
         self.email_el = self.driver.find_element_by_id(
-            email) if email else None
-        self.country_id = country
+            self.email_id) if self.email_id else None
         self.country_el = self.driver.find_element_by_id(
-            country) if country else None
+            self.country_id) if self.country_id else None
 
     @classmethod
     def get_users_from_file(cls, psw='dDD&sh21', email='test@ukr.net'):
@@ -168,8 +171,14 @@ class Register(object):
         cls.telephone, cls.curr_email = list(user)
 
     @classmethod
-    def get_full_name(cls):
-        return '{}{}'.format(cls.first_name.lower(), cls.last_name.lower())
+    def get_full_name(cls, additional=False):
+        if additional:
+            return '{}{}{}'.format(
+                cls.first_name.lower(),
+                cls.last_name.lower(),
+                get_random('string'))
+        else:
+            return '{}{}'.format(cls.first_name.lower(), cls.last_name.lower())
 
     def click_el(self, _id):
         self.driver.execute_script("""
@@ -199,6 +208,7 @@ class Register(object):
         self.select_el(el, values)
 
     def run(self):
+        self.run_selenium()
         self.fill_input(self.phone_id, Register.telephone)
         self.fill_input(self.psw_id, Register.password)
         self.fill_data(self.day_el, self.day_id, Register.DAY)
@@ -264,6 +274,7 @@ class Google(Register):
 class Yahoo(Register):
     def run(self):
         Register.run(self)
+        self.fill_input(self.username_id, self.get_full_name(additional=True))
         self.click_el(self.button_id)
         time.sleep(3)
         try:
@@ -276,45 +287,45 @@ class Yahoo(Register):
 
 class Hotmail(Register):
     def run(self):
+        Register.run(self)
         self.fill_input(self.username_id, '{}{}'.format(
             Register.get_full_name(), get_random('string'))
                         )
-        Register.run(self)
 
 
 if __name__ == '__main__':
 
     Register.get_users_from_file()
+    hotmail = Hotmail(
+        url='https://signup.live.com/?wa=wsignin1.0&rpsnv=13&ct=1497780750&rver=6.7.6643.0&wp=MBI_SSL_SHARED&wreply=https%3a%2f%2fmail.live.com%2fdefault.aspx&id=64855&cbcxt=mai&contextid=B8D329A03FEA83B1&bk=1497780755&uiflavor=web&uaid=f4f5e57bd31640058a5d98aeda47b15a&mkt=EN-US&lc=1033&lic=1',
+        f_name='FirstName', l_name='LastName', username='MemberName',
+        psw='Password', psw_confirm='RetypePassword', country='Country',
+        phone='PhoneNumber', email='iAltEmail', month='BirthMonth',
+        day='BirthDay', year='BirthYear', gender='Gender')
+    yahoo = Yahoo(
+        url="https://login.yahoo.com/account/create?specId=yidReg&lang=en-US&src=ym&done=https%3A%2F%2Fmail.yahoo.com&display=login&intl=us",
+        f_name="usernamereg-firstName", l_name="usernamereg-lastName",
+        username="usernamereg-yid", psw="usernamereg-password",
+        phone="usernamereg-phone", day="usernamereg-day",
+        year="usernamereg-year", button="reg-submit-button",
+        month="usernamereg-month",
+    )
+    google = Google(
+        url="https://accounts.google.com/SignUp?service=mail&continue=https://mail.google.com/mail/?pc=topnav-about-en",
+        f_name="FirstName",
+        l_name="LastName",
+        username="GmailAddress",
+        psw="Passwd",
+        psw_confirm="PasswdAgain",
+        year="BirthYear",
+        month="BirthMonth",
+        day="BirthDay",
+        gender="Gender",
+        phone="RecoveryPhoneNumber",
+        email="RecoveryEmailAddress",
+        button="submitbutton"
+    )
     for user in Register.users:
-        hotmail = Hotmail(
-            url='https://signup.live.com/?wa=wsignin1.0&rpsnv=13&ct=1497780750&rver=6.7.6643.0&wp=MBI_SSL_SHARED&wreply=https%3a%2f%2fmail.live.com%2fdefault.aspx&id=64855&cbcxt=mai&contextid=B8D329A03FEA83B1&bk=1497780755&uiflavor=web&uaid=f4f5e57bd31640058a5d98aeda47b15a&mkt=EN-US&lc=1033&lic=1',
-            f_name='FirstName', l_name='LastName', username='MemberName',
-            psw='Password', psw_confirm='RetypePassword', country='Country',
-            phone='PhoneNumber', email='iAltEmail', month='BirthMonth',
-            day='BirthDay', year='BirthYear', gender='Gender')
-        yahoo = Yahoo(
-            url="https://login.yahoo.com/account/create?specId=yidReg&lang=en-US&src=ym&done=https%3A%2F%2Fmail.yahoo.com&display=login&intl=us",
-            f_name="usernamereg-firstName", l_name="usernamereg-lastName",
-            username="usernamereg-yid", psw="usernamereg-password",
-            phone="usernamereg-phone", day="usernamereg-day",
-            year="usernamereg-year", button="reg-submit-button",
-            month="usernamereg-month",
-        )
-        google = Google(
-            url="https://accounts.google.com/SignUp?service=mail&continue=https://mail.google.com/mail/?pc=topnav-about-en",
-            f_name="FirstName",
-            l_name="LastName",
-            username="GmailAddress",
-            psw="Passwd",
-            psw_confirm="PasswdAgain",
-            year="BirthYear",
-            month="BirthMonth",
-            day="BirthDay",
-            gender="Gender",
-            phone="RecoveryPhoneNumber",
-            email="RecoveryEmailAddress",
-            button="submitbutton"
-        )
         Register.init_data(user)
         run_method(hotmail.run())
         run_method(yahoo.run())
