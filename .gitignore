@@ -99,4 +99,5 @@ geckodriver.log
 
 
 /geckodriver.log
+/captcha.png
 /users.csv
