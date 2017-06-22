@@ -306,8 +306,8 @@ class Yahoo(Register):
         # try:
         #     self.driver.find_element_by_xpath("//button[@type='submit']").click()
         # except Exception as e:
-            print(e)
-        print(user_msg)
+        #     print(e)
+        # print(user_msg)
         # user_to_file(user, self.username_el.text, full_adress)
 
 

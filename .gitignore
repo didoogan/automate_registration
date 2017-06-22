@@ -97,3 +97,5 @@ ENV/
 .idea/
 geckodriver.log
 
+/captcha.png
+/users.csv
