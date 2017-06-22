@@ -9,6 +9,7 @@ from collections import namedtuple
 from selenium import webdriver
 from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+from captcha_solver import CaptchaSolver
 
 # Presets
 # first_name = 'JOHN'
@@ -83,6 +84,7 @@ def run_method(func):
 
 
 TOR_BINARY_PATH = '/usr/bin/tor-browser-en.sh'
+RUCAPTCHA_API_KEY = '4dbbecf3bb7b40abeb99167e1c0e3fcb'
 
 
 # TOR_BINARY_PATH = '/Applications/TorBrowser.app/Contents/MacOS/firefox'
@@ -102,9 +104,10 @@ class Register(object):
     COUNTRY = ('United States', 'US', 'us',)
     GENDER = ('Male', 'Female',)
 
-    def __init__(self, url, f_name, l_name, username, psw,
-                 phone, month, day, year, psw_confirm=None, email=None,
-                 gender=None, _zip=None, button=None, country=None):
+    def __init__(self, url, f_name, l_name, username, psw, phone, month, day,
+                 year, psw_confirm=None, email=None, gender=None, _zip=None,
+                 button=None, country=None, captcha_img_alt=None,
+                 captcha_input_label=None):
         self.url = url
         self.f_name_id = f_name
         self.l_name_id = l_name
@@ -120,6 +123,11 @@ class Register(object):
         self.button_id = button
         self.email_id = email
         self.country_id = country
+        self.captcha_img_alt = captcha_img_alt
+        if captcha_img_alt:
+            self.captcha_solver = CaptchaSolver('rucaptcha',
+                                                api_key=RUCAPTCHA_API_KEY)
+        self.captcha_input_label = captcha_input_label
 
     def run_selenium(self):
         binary = FirefoxBinary(TOR_BINARY_PATH)
@@ -154,6 +162,12 @@ class Register(object):
             self.email_id) if self.email_id else None
         self.country_el = self.driver.find_element_by_id(
             self.country_id) if self.country_id else None
+        self.captcha_img_el = self.driver.find_element_by_xpath(
+            "//img[@alt='{}']".format(self.captcha_img_alt)
+        ) if self.captcha_img_alt else None
+        self.captcha_input_el = self.driver.find_element_by_xpath(
+            "//input[@aria-label='{}']".format(self.captcha_input_label)
+        ) if self.captcha_input_label else None
 
     @classmethod
     def get_users_from_file(cls, psw='dDD&sh21', email='test@ukr.net'):
@@ -207,18 +221,30 @@ class Register(object):
             self.fill_input(_id, values[0])
         self.select_el(el, values)
 
+    def solve_captcha(self):
+        if not self.captcha_img_el:
+            return
+        captcha_solver = CaptchaSolver('rucaptcha',
+                                       api_key=RUCAPTCHA_API_KEY)
+        img_path = os.path.join(os.getcwd(), 'captcha.png')
+        self.captcha_img_el.screenshot(img_path)
+        key = captcha_solver.solve_captcha(open(img_path, mode='rb').read())
+        self.captcha_input_el.send_keys(key)
+
     def run(self):
         self.run_selenium()
+        self.solve_captcha()
         self.fill_input(self.phone_id, Register.telephone)
         self.fill_input(self.psw_id, Register.password)
         self.fill_data(self.day_el, self.day_id, Register.DAY)
         self.fill_data(self.month_el, self.month_id, Register.MONTH)
         self.fill_data(self.year_el, self.year_id, Register.YEAR)
+        self.fill_data(self.country_el, self.country_id, Register.COUNTRY)
+        self.fill_data(self.gender_el, self.gender_id, Register.GENDER)
         self.fill_input(self.f_name_id, Register.first_name)
         self.fill_input(self.l_name_id, Register.last_name)
         self.fill_input(self.username_id, Register.get_full_name())
         self.fill_input(self.psw_confirm_id, Register.password)
-        self.fill_data(self.country_el, self.country_id, Register.COUNTRY)
         self.fill_input(self.psw_confirm_id, Register.password)
         self.fill_input(self.email_id, Register.curr_email)
 
@@ -251,7 +277,7 @@ class Google(Register):
             self.fill_input(self.username_id, new_username)
             self.fill_input(self.psw_id, Register.password)
             self.fill_input(self.psw_confirm_id, Register.password)
-
+        time.sleep(3)
         tos_scroll = self.driver.find_element_by_xpath(
             '//div[@class="tos-scroll-button-content"]')
         tos_scroll.click()
@@ -277,9 +303,9 @@ class Yahoo(Register):
         self.fill_input(self.username_id, self.get_full_name(additional=True))
         self.click_el(self.button_id)
         time.sleep(3)
-        try:
-            self.driver.find_element_by_xpath("//button[@type='submit']").click()
-        except Exception as e:
+        # try:
+        #     self.driver.find_element_by_xpath("//button[@type='submit']").click()
+        # except Exception as e:
             print(e)
         print(user_msg)
         # user_to_file(user, self.username_el.text, full_adress)
@@ -291,6 +317,7 @@ class Hotmail(Register):
         self.fill_input(self.username_id, '{}{}'.format(
             Register.get_full_name(), get_random('string'))
                         )
+        self.driver.find_element_by_id("CredentialsAction").click()
 
 
 if __name__ == '__main__':
@@ -301,14 +328,16 @@ if __name__ == '__main__':
         f_name='FirstName', l_name='LastName', username='MemberName',
         psw='Password', psw_confirm='RetypePassword', country='Country',
         phone='PhoneNumber', email='iAltEmail', month='BirthMonth',
-        day='BirthDay', year='BirthYear', gender='Gender')
+        day='BirthDay', year='BirthYear', gender='Gender',
+        captcha_img_alt="Visual Challenge",
+        captcha_input_label="Enter the characters you see")
     yahoo = Yahoo(
         url="https://login.yahoo.com/account/create?specId=yidReg&lang=en-US&src=ym&done=https%3A%2F%2Fmail.yahoo.com&display=login&intl=us",
         f_name="usernamereg-firstName", l_name="usernamereg-lastName",
         username="usernamereg-yid", psw="usernamereg-password",
         phone="usernamereg-phone", day="usernamereg-day",
         year="usernamereg-year", button="reg-submit-button",
-        month="usernamereg-month",
+        month="usernamereg-month"
     )
     google = Google(
         url="https://accounts.google.com/SignUp?service=mail&continue=https://mail.google.com/mail/?pc=topnav-about-en",
