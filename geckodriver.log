@@ -1950,3 +1950,59 @@ Options:
   -h				Show this help message and exit
   -u				Force update of the copy in your home directory
   -r <directory>	The Tor-Browser directory to use
+1498154787696	geckodriver	INFO	Listening on 127.0.0.1:38202
+1498154789030	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1498154802919	Marionette	INFO	Listening on port 41551
+1498154803653	Marionette	WARN	TLS certificate errors will be ignored for this session
+1498154849304	geckodriver	INFO	Listening on 127.0.0.1:42190
+1498154850569	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1498154857302	Marionette	INFO	Listening on port 39078
+1498154858056	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+1498154864240	geckodriver	INFO	Listening on 127.0.0.1:43936
+1498154865515	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1498154871649	Marionette	INFO	Listening on port 38712
+1498154872150	Marionette	WARN	TLS certificate errors will be ignored for this session
+1498154902795	geckodriver	INFO	Listening on 127.0.0.1:42984
+1498154904051	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1498154910173	Marionette	INFO	Listening on port 37785
+1498154910659	Marionette	WARN	TLS certificate errors will be ignored for this session
+1498154956112	geckodriver	INFO	Listening on 127.0.0.1:38606
+1498154957379	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1498154964094	Marionette	INFO	Listening on port 40261
+1498154964185	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+1498154970105	geckodriver	INFO	Listening on 127.0.0.1:49381
+1498154971391	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1498154978613	Marionette	INFO	Listening on port 34560
+1498154979067	Marionette	WARN	TLS certificate errors will be ignored for this session
+1498155036462	Marionette	INFO	Ceased listening
+1498155039391	Marionette	INFO	Ceased listening
+1498155042549	Marionette	INFO	Ceased listening
+1498155044882	Marionette	INFO	Ceased listening
+1498155047983	Marionette	INFO	Ceased listening
+1498155050580	Marionette	INFO	Ceased listening
+1498155121372	geckodriver	INFO	Listening on 127.0.0.1:46294
+1498155121701	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1498155128719	Marionette	INFO	Listening on port 45166
+1498155129376	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1498156378939	geckodriver	INFO	Listening on 127.0.0.1:47286
+1498156380303	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1498156388193	Marionette	INFO	Listening on port 44257
+1498156388828	Marionette	WARN	TLS certificate errors will be ignored for this session
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1498158420140	Marionette	INFO	Ceased listening
+1498158422623	Marionette	INFO	Ceased listening

@@ -356,9 +356,9 @@ if __name__ == '__main__':
     )
     for user in Register.users:
         Register.init_data(user)
-        run_method(hotmail.run())
+        # run_method(hotmail.run())
         run_method(yahoo.run())
-        run_method(google.run())
+        # run_method(google.run())
 
 
         # aol = Register(
