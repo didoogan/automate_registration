@@ -10,6 +10,7 @@ from selenium import webdriver
 from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 from captcha_solver import CaptchaSolver
+from selenium.webdriver.common.proxy import *
 
 # Presets
 # first_name = 'JOHN'
@@ -130,18 +131,18 @@ class Register(object):
         self.captcha_input_label = captcha_input_label
 
     def run_selenium(self):
-        binary = FirefoxBinary(TOR_BINARY_PATH)
+        port = "8118"  # The Privoxy (HTTP) port
+        my_proxy = "127.0.0.1:" + port
+        proxy = Proxy({
+            'proxyType': ProxyType.MANUAL,
+            'httpProxy': my_proxy,
+            'ftpProxy': my_proxy,
+            'sslProxy': my_proxy,
+            'noProxy': ''
+        })
 
-        prof = FirefoxProfile()
-
-        prof.set_preference('network.proxy.type', 1)
-        prof.set_preference('network.proxy.socks_host', '127.0.0.1')
-        prof.set_preference('network.proxy.socks_port', 9150)
-        prof.update_preferences()
-
-        # self.driver = webdriver.Firefox(firefox_profile=prof,
-        #                                 firefox_binary=binary)
-        self.driver = webdriver.Firefox()
+        # Launch the Firefox window and visit the given URL
+        self.driver = webdriver.Firefox(proxy=proxy)
         self.driver.get(self.url)
         self.f_name_el = self.driver.find_element_by_id(self.f_name_id)
         self.l_name_el = self.driver.find_element_by_id(self.l_name_id)
