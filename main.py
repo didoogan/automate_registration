@@ -7,47 +7,15 @@ import time
 from collections import namedtuple
 
 from selenium import webdriver
-from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
-from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 from captcha_solver import CaptchaSolver
 from selenium.webdriver.common.proxy import *
 
-# Presets
-# first_name = 'JOHN'
-# last_name = 'AGMA'
-# usr_name = ''
-# password = 'secret123'
-# # telephone = '+13105874561'
-# telephone = '+380995320999'
-# curr_email = 'test2@ukr.net'
-# full_adress = ''
 user_msg = 'You should receive PIN code on your telephone for an activating ' \
            'account. Please, type it on web page and click confirmation button'
 
 User = namedtuple('User', 'f_name l_name psw tel email')
 
 
-def aol():
-    driver = webdriver.Firefox()
-    driver.get(
-        "https://i.aol.com/reg/signup?ncid=txtlnkuswebr00000054&promocode=825329")
-    # Page elements
-    f_name = driver.find_element_by_id("firstName")
-    l_name = driver.find_element_by_id("lastName")
-    username = driver.find_element_by_id("desiredSN")
-    psw = driver.find_element_by_id("password")
-    psw_confirm = driver.find_element_by_id("verify-password-cont")
-    country = driver.find_element_by_id("country-code_msdd")
-    phone = driver.find_element_by_id("mobileNum")
-    email = driver.find_element_by_id("altEMail")
-    month = driver.find_element_by_id("dobMonth")
-    day = driver.find_element_by_id("dobDay")
-    year = driver.find_element_by_id("dobYear")
-    gender = driver.find_element_by_id("gender")
-    zip = driver.find_element_by_id("zipCode")
-
-    f_name.send_keys(first_name)
-    l_name.send_keys(last_name)
 
 
 def get_random(choice):
@@ -88,7 +56,6 @@ TOR_BINARY_PATH = '/usr/bin/tor-browser-en.sh'
 RUCAPTCHA_API_KEY = '4dbbecf3bb7b40abeb99167e1c0e3fcb'
 
 
-# TOR_BINARY_PATH = '/Applications/TorBrowser.app/Contents/MacOS/firefox'
 
 
 class Register(object):
@@ -304,12 +271,12 @@ class Yahoo(Register):
         self.fill_input(self.username_id, self.get_full_name(additional=True))
         self.click_el(self.button_id)
         time.sleep(3)
-        # try:
-        #     self.driver.find_element_by_xpath("//button[@type='submit']").click()
-        # except Exception as e:
-        #     print(e)
-        # print(user_msg)
-        # user_to_file(user, self.username_el.text, full_adress)
+        try:
+            self.driver.find_element_by_xpath("//button[@type='submit']").click()
+        except Exception as e:
+            print(e)
+        print(user_msg)
+        user_to_file(user, self.username_el.text, full_adress)
 
 
 class Hotmail(Register):
@@ -326,18 +293,31 @@ if __name__ == '__main__':
     Register.get_users_from_file()
     hotmail = Hotmail(
         url='https://signup.live.com/?wa=wsignin1.0&rpsnv=13&ct=1497780750&rver=6.7.6643.0&wp=MBI_SSL_SHARED&wreply=https%3a%2f%2fmail.live.com%2fdefault.aspx&id=64855&cbcxt=mai&contextid=B8D329A03FEA83B1&bk=1497780755&uiflavor=web&uaid=f4f5e57bd31640058a5d98aeda47b15a&mkt=EN-US&lc=1033&lic=1',
-        f_name='FirstName', l_name='LastName', username='MemberName',
-        psw='Password', psw_confirm='RetypePassword', country='Country',
-        phone='PhoneNumber', email='iAltEmail', month='BirthMonth',
-        day='BirthDay', year='BirthYear', gender='Gender',
+        f_name='FirstName',
+        l_name='LastName',
+        username='MemberName',
+        psw='Password',
+        psw_confirm='RetypePassword',
+        country='Country',
+        phone='PhoneNumber',
+        email='iAltEmail',
+        month='BirthMonth',
+        day='BirthDay',
+        year='BirthYear',
+        gender='Gender',
         captcha_img_alt="Visual Challenge",
-        captcha_input_label="Enter the characters you see")
+        captcha_input_label="Enter the characters you see"
+    )
     yahoo = Yahoo(
         url="https://login.yahoo.com/account/create?specId=yidReg&lang=en-US&src=ym&done=https%3A%2F%2Fmail.yahoo.com&display=login&intl=us",
-        f_name="usernamereg-firstName", l_name="usernamereg-lastName",
-        username="usernamereg-yid", psw="usernamereg-password",
-        phone="usernamereg-phone", day="usernamereg-day",
-        year="usernamereg-year", button="reg-submit-button",
+        f_name="usernamereg-firstName",
+        l_name="usernamereg-lastName",
+        username="usernamereg-yid",
+        psw="usernamereg-password",
+        phone="usernamereg-phone",
+        day="usernamereg-day",
+        year="usernamereg-year",
+        button="reg-submit-button",
         month="usernamereg-month"
     )
     google = Google(
@@ -357,9 +337,9 @@ if __name__ == '__main__':
     )
     for user in Register.users:
         Register.init_data(user)
-        # run_method(hotmail.run())
+        run_method(hotmail.run())
         run_method(yahoo.run())
-        # run_method(google.run())
+        run_method(google.run())
 
 
         # aol = Register(
